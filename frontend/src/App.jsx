@@ -1,11 +1,18 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import axios from 'axios'
+import api from './services/api';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [msg, setMsg] = useState("Loading...");
+
+  useEffect(() => {
+    api.get('')
+    .then(res => setMsg(res.data.Hello))
+    .catch(() => setMsg("Error"));
+  }, []);
 
   return (
     <>
@@ -19,7 +26,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button className="btn btn-accent" onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
         <p>
@@ -33,7 +40,8 @@ function App() {
         Hello world!
       </h1>
       <button className="btn btn-neutral">Neutral</button>
-<button className="btn btn-primary">Primary</button>
+      <button className="btn btn-primary">Primary</button>
+      <p className="p-3">FastAPI response: {msg}</p>
     </>
   )
 }
