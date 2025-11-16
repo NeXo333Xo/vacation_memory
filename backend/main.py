@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.api.first import router as first_router
+from backend.routes.trips import router as trips_router
 from backend.database import create_db_and_tables
 
 from contextlib import asynccontextmanager
@@ -13,7 +13,7 @@ async def lifespan(app: FastAPI):
     yield
 
 app = FastAPI(lifespan=lifespan)
-app.include_router(first_router, prefix="/api")
+app.include_router(trips_router, prefix="/api", tags=["trips"])
 
 
 app.add_middleware(
