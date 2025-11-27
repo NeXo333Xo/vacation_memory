@@ -1,7 +1,7 @@
 from sqlmodel import Session, SQLModel, create_engine
 from fastapi import Depends
 from typing import Annotated
-from backend.models import TripBase, Trip, TripUpdate
+from backend.src.models.models import Trip, UserInDB
 
 
 sqlite_file_name = "database.db"

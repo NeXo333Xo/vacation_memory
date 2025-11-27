@@ -1,6 +1,6 @@
 from sqlmodel import select
-from backend.models import Trip, TripBase, TripUpdate
-from backend.database import SessionDep
+from backend.src.models.models import Trip, TripBase, TripUpdate
+from backend.src.database.database import SessionDep
 
 # GET
 async def get_trip(db: SessionDep, trip_id: int) -> Trip | None:
